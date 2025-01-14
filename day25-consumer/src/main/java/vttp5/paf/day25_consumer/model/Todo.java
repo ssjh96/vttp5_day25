@@ -30,5 +30,11 @@ public class Todo {
         this.taskName = taskName;
     }
 
+    @Override
+    public String toString() {
+        return "Todo [id=" + id + ", taskName=" + taskName + "]";
+    }
+
+    
     
 }

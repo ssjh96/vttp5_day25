@@ -10,6 +10,7 @@ public class ConsumerService
     public void handleMessage(Todo todo)
     {
         // You can perform smth here but we are just printing out whatever we receive for this example
-        System.out.println(todo);
+        // Can for example save to DB
+        System.out.println(todo.toString());
     }
 }
