@@ -1,6 +1,6 @@
 package vttp5.paf.day25_producer.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -14,12 +14,12 @@ public class Student
 
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(pattern = "dd-MM-yyyy") // Ensures a consistent date format
-    private Date dob;
+    private LocalDate dob;
 
     public Student() {
     }
 
-    public Student(int id, String name, Date dob) {
+    public Student(int id, String name, LocalDate dob) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -41,11 +41,11 @@ public class Student
         this.name = name;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 

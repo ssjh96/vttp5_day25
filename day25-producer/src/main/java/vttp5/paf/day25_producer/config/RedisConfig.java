@@ -6,6 +6,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
+import vttp5.paf.day25_producer.model.Student;
 import vttp5.paf.day25_producer.model.Todo;
 
 @Configuration
@@ -27,4 +28,10 @@ public class RedisConfig
     {
         return new Jackson2JsonRedisSerializer<>(Todo.class);
     }
+
+    // @Bean("student")
+    // RedisTemplate<String, Student> redisTemplate2(RedisConnectionFactory connFac, Jackson2JsonRedisSerializer<Student> serializer)
+    // {
+
+    // }
 }

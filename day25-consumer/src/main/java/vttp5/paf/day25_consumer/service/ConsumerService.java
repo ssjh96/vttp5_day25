@@ -13,4 +13,6 @@ public class ConsumerService
         // Can for example save to DB
         System.out.println(todo.toString());
     }
+
+    // onMessage is how we recevie the orderData as a string, thn we can use a jsonP
 }

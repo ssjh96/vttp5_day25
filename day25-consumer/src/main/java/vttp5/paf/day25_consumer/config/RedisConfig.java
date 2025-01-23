@@ -21,6 +21,7 @@ public class RedisConfig
     @Value("${redis.topic1}")
     private String redisTopic; // subscribe topic
 
+
     // Connection Factory is configturing all the settings to connect to redis DB
     @Bean
     RedisTemplate<String, Todo> redisTemplate(RedisConnectionFactory connFac, Jackson2JsonRedisSerializer<Todo> serializer)
