@@ -141,7 +141,7 @@ public class RedisConfig
         // Link the adapter to the subscriber serivce
         MessageListenerAdapter adapter = new MessageListenerAdapter(redisConsumerService, "handleMessage");
 
-        // the default serialiser is String
+        // the default serialiser is
         // Uncomment if you need JSON deserialization for messages
         // adapter.setSerializer(new Jackson2JsonRedisSerializer<>(String.class));
 

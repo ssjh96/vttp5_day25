@@ -92,5 +92,64 @@ public class PublisherService {
 
 
 
+LIST MESSAGING
+@Component
+public class MessagePoller {
+
+    @Autowired
+    @Qualifier("myredis")
+    private RedisTemplate<String, String> redisTemplate;
+
+    // Annotate this method with @Async to run asynchronously
+    @Async
+    public void startPolling() {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            ListOperations<String, String> listOps = redisTemplate.opsForList();
+
+            // Continuous polling
+            while (true) {
+                try {
+                    // Perform a BRPOP operation with a timeout of 5 seconds
+                    Optional<String> message = Optional.ofNullable(listOps.rightPop("orders", Duration.ofSeconds(5)));
+
+                    if (message.isPresent()) {
+                        System.out.printf("Message received: %s%n", message.get());
+
+                        // Process the message
+                        processMessage(message.get());
+                    } else {
+                        System.out.println("No message found. Waiting...");
+                    }
+                } catch (Exception ex) {
+                    System.err.printf("Error during polling: %s%n", ex.getMessage());
+                }
+            }
+        });
+    }
+
+    private void processMessage(String message) {
+        // Simulate processing the message
+        System.out.printf("Processing message: %s%n", message);
+    }
+}
+
+
+@SpringBootApplication
+@EnableAsync // Required to enable @Async annotation
+public class Day25LecApplication implements CommandLineRunner {
+
+    @Autowired
+    private MessagePoller poller;
+
+    public static void main(String[] args) {
+        SpringApplication.run(Day25LecApplication.class, args);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println("Starting Message Poller...");
+        poller.startPolling(); // Start the polling thread
+    }
+}
 
 
