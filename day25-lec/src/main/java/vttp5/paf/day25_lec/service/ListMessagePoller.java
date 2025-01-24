@@ -36,7 +36,8 @@ public class ListMessagePoller {
 
                     // Perform BRPOP op with timeout 5sec
                     Optional<String> opt = Optional.ofNullable(
-                        orderList.rightPop("orders", Duration.ofSeconds(5)) // wait for 5 seconds, if queue has things, return optional of it, else return empty optional
+                        orderList.rightPop("orders", Duration.ofSeconds(5)) // block for 5 seconds if the list is empty, if queue has message, it returns the message, otherwise returns null 
+                        // But optional wrap makes it return optional of it, but if null return empty optional
                     );
 
                     if (opt.isPresent())
@@ -59,3 +60,25 @@ public class ListMessagePoller {
         Executors.newSingleThreadExecutor().execute(poller);
     }
 }
+
+
+// ADD INFO
+// Lamda Expression
+
+// "The poller variable must be of type Runnable."
+// "Runnable has one abstract method: run()."
+// "The lambda expression corresponds to the run() method of Runnable."
+
+// Runnable poller = () -> {
+//     // Task code here
+// };
+
+// Equivalent
+// Runnable poller = new Runnable() {
+//     @Override
+//     public void run() {
+//         // Task code here
+//     }
+// };
+
+

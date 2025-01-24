@@ -65,7 +65,7 @@ public class Day25LecApplication implements CommandLineRunner{
 
 
 		// Testing with poller
-		listMessagePoller.startPolling(); // Start the message poller
+		listMessagePoller.startPolling(); // Start the message poller, runs continuously in the background because of the @Async and doesn't block the main app thread
 		listMessageProducer.sendPollingMessage("This is for polling");
 		listMessageProducer.sendPollingMessage("This is also for polling");
 	}
