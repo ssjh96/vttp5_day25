@@ -38,7 +38,8 @@ public class RedisConfig
     @Autowired
     private SubscriberService subscriberService;
     
-    @Autowired SubscriberService2 subscriberService2;
+    @Autowired 
+    private SubscriberService2 subscriberService2;
 
     // CLIENT/PUBLISHER
     // client sends/publishes messages to a channel or topic, it doesnt know who or how many subscribers are listening.

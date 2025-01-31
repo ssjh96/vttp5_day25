@@ -26,6 +26,7 @@ public class ListMessagePoller {
     public void startPolling()
     {
         // Create runnable tasks for polling
+        // Runnable is used to execute the polling task asynchronusly using an ExecutorService
         Runnable poller = () -> { // Runnable is a blueprint for what a thread should do, it has one method, run(), where the task is defined.
             // Used it to define custom tasks for threads and allows creation of multiple threads to handle diff tasks concurrently.
             ListOperations<String, String> orderList = template.opsForList();
